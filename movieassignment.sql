@@ -1,0 +1,16 @@
+create database movie_assignment;
+use movie_assignment;
+create table movies (movie_id int primary key,title varchar(30),release_year int,director_id int);
+create table directors (director_id int primary key,director_name varchar(30));
+create table genres (genres_id int primary key,genre_name varchar(30));
+create table movgenres (movie_id int,genre_id int);
+insert into movies values (1,'KGF',2018,1),(2,'Singham',2011,2),(3,'Padmaavat',2018,3);
+insert into movies values (4,'KGF 2',2022,1),(5,'Sooryavanshi',2021,2),(6,'Ram Leela',2013,3);
+insert into directors values (1,'Prashanth Neel'),(2,'Rohit Shetty'),(3,'Sanjay Leela Bhansali');
+insert into genres values (1,'Action-Drama'),(2,'Drama-Romance'),(3,'Action-Comedy');
+insert into movgenres values (1,1),(2,3),(3,2);
+insert into movgenres values (4,1),(5,3),(6,2);
+SELECT movies.title, directors.director_name FROM movies JOIN directors ON movies.director_id = directors.director_id;
+SELECT movies.title, movies.release_year, directors.director_name FROM movies LEFT JOIN directors ON movies.director_id = directors.director_id;
+SELECT directors.director_name, movies.title FROM directors LEFT JOIN movies ON directors.director_id = movies.director_id;
+SELECT movies.title, genres.genre_name FROM movies JOIN movgenres ON movies.movie_id = movgenres.movie_id JOIN genres ON movgenres.genre_id = genres.genres_id;
